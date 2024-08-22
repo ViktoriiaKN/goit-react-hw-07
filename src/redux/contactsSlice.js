@@ -32,6 +32,15 @@ const contactsSlice = createSlice({
   },
 });
 
+// Selector to filter visible contacts based on the current filter
+export const selectVisibleContacts = (state) => {
+  const contacts = state.contacts.items;
+  const filter = state.filters.name.toLowerCase();
+  return contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(filter)
+  );
+};
+
 export const selectContacts = (state) => state.contacts.items;
 export const selectLoading = (state) => state.contacts.loading;
 export const selectError = (state) => state.contacts.error;
